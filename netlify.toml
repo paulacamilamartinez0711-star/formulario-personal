@@ -1,0 +1,40 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "22"
+  AWS_LAMBDA_JS_RUNTIME = "nodejs22.x"
+
+[functions]
+  node_bundler = "esbuild"
+  included_files = ["src/assets/Firma ERPA.png", "src/assets/Firma SGB.png"]
+
+[functions."eliminar-empleado"]
+  timeout = 26
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; connect-src 'self' blob: data: https://*.supabase.co wss://*.supabase.co; frame-src 'self' blob: data:; worker-src 'self' blob:; media-src 'self' blob: data:; font-src 'self' data:; object-src 'self' blob: data:; base-uri 'self'; frame-ancestors 'self'; form-action 'self'"
+
+[[redirects]]
+  from = "/api/archivos"
+  to = "/.netlify/functions/archivos"
+  status = 200
+
+[[redirects]]
+  from = "/api/hoja-empleados"
+  to = "/.netlify/functions/hoja-empleados"
+  status = 200
+
+[[redirects]]
+  from = "/api/sincronizar-empleados"
+  to = "/.netlify/functions/sincronizar-empleados"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

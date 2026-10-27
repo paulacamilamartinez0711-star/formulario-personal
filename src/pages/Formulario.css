@@ -1,0 +1,30 @@
+.employee-form-page,
+.employee-form-container {
+  min-width: 0;
+}
+
+.employee-form-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)) !important;
+}
+
+@media (max-width: 600px) {
+  .employee-form-page {
+    padding: 12px 8px !important;
+  }
+
+  .employee-form-header {
+    padding: 22px 18px !important;
+  }
+
+  .employee-form {
+    padding: 20px 16px !important;
+  }
+
+  .employee-form-container {
+    border-radius: 12px !important;
+  }
+
+  .employee-form-grid {
+    gap: 0 12px !important;
+  }
+}
